@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 # --------------------------------------------------------
 # Licensed under the terms of the BSD 3-Clause License
 # (see LICENSE for details).
-# Copyright © 2018-2023, A.A Suvorov
+# Copyright © 2018-2024, A.A Suvorov
 # All rights reserved.
 # --------------------------------------------------------
 # https://github.com/smartlegionlab
@@ -16,7 +15,7 @@ class RandomStringMaster:
     letters = string.ascii_letters
 
     @classmethod
-    def get(cls, length=10):
+    def create(cls, length=10):
         return ''.join((random.choice(cls.letters) for _ in range(length)))
 
 
@@ -24,7 +23,7 @@ class RandomNumberMaster:
     numbers = string.digits
 
     @classmethod
-    def get(cls, length=10):
+    def create(cls, length=10):
         return ''.join((random.choice(cls.numbers) for _ in range(length)))
 
 
@@ -32,7 +31,7 @@ class RandomSymbolMaster:
     symbols = '@$!%*#?&-'
 
     @classmethod
-    def get(cls, length=10):
+    def create(cls, length=10):
         return ''.join((random.choice(cls.symbols) for _ in range(length)))
 
 
@@ -42,13 +41,13 @@ class RandomPasswordMaster:
     symbols = '@$!%*#?&-'
 
     @classmethod
-    def get(cls, length=10):
+    def create(cls, length=10):
         return ''.join((random.choice(cls.letters + cls.numbers + cls.symbols) for _ in range(length)))
 
 
 class RandomHashMaster:
     @classmethod
-    def get(cls, text):
+    def create(cls, text):
         sha = hashlib.sha3_512(text.encode('utf-8'))
         new_hash = sha.hexdigest()
         return new_hash
@@ -62,7 +61,7 @@ class RandomMaster:
     hash = RandomHashMaster()
 
     @classmethod
-    def get_code(cls, length=10, number_flag=False, string_flag=False, symbol_flag=False):
+    def create_code(cls, length=10, number_flag=False, string_flag=False, symbol_flag=False):
         data = ''
         if string_flag:
             data += cls.string.letters

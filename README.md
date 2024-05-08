@@ -1,5 +1,4 @@
-# smartrandom
-
+# smartrandom <sup>v0.0.2</sup>
 ---
 
 ## Random Data Generators:
@@ -13,13 +12,13 @@ Helps to generate passwords, service codes (for example, for sending via SMS), h
 ```python
 from smartrandom.random_master import RandomMaster
 
-random_string = RandomMaster.string.get(length=10)
-random_number_string = RandomMaster.number.get(length=10)
-password = RandomMaster.password.get(length=10)
-random_hash = RandomMaster.hash.get(text='give me hash')
-random_number_code = RandomMaster.get_code(length=10, number_flag=True)
-random_string_code = RandomMaster.get_code(length=10, string_flag=True)
-random_symbol_code = RandomMaster.get_code(length=10, symbol_flag=True)
+random_string = RandomMaster.string.create(length=10)
+random_number_string = RandomMaster.number.create(length=10)
+password = RandomMaster.password.create(length=10)
+random_hash = RandomMaster.hash.create(text='give me hash')
+random_number_code = RandomMaster.create_code(length=10, number_flag=True)
+random_string_code = RandomMaster.create_code(length=10, string_flag=True)
+random_symbol_code = RandomMaster.create_code(length=10, symbol_flag=True)
 
 ```
 
@@ -44,6 +43,6 @@ random_symbol_code = RandomMaster.get_code(length=10, symbol_flag=True)
     --------------------------------------------------------
     Licensed under the terms of the BSD 3-Clause License
     (see LICENSE for details).
-    Copyright © 2018-2023, A.A Suvorov
+    Copyright © 2018-2024, A.A Suvorov
     All rights reserved.
     --------------------------------------------------------
