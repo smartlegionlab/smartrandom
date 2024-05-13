@@ -1,4 +1,4 @@
-# smartrandom <sup>v0.0.2</sup>
+# smartrandom <sup>v0.0.3</sup>
 ---
 
 ## Random Data Generators:
@@ -6,6 +6,14 @@
 Allows you to generate random strings of a given length from letters, numbers, symbols.
 Helps to generate passwords, service codes (for example, for sending via SMS), hashes and much more.
 ---
+
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/smartlegionlab/smartrandom)](https://github.com/smartlegionlab/smartrandom/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/smartrandom?label=pypi%20downloads)](https://pypi.org/project/smartrandom/)
+![GitHub top language](https://img.shields.io/github/languages/top/smartlegionlab/smartrandom)
+[![PyPI](https://img.shields.io/pypi/v/smartrandom)](https://pypi.org/project/smartrandom)
+[![GitHub](https://img.shields.io/github/license/smartlegionlab/smartrandom)](https://github.com/smartlegionlab/smartrandom/blob/master/LICENSE)
+[![PyPI - Format](https://img.shields.io/pypi/format/smartrandom)](https://pypi.org/project/smartrandom)
+
 
 ## Help:
 
