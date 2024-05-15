@@ -1,10 +1,11 @@
-# smartrandom <sup>v0.0.3</sup>
+# smartrandom <sup>v0.1.0</sup>
 ---
 
 ## Random Data Generators:
 
-Allows you to generate random strings of a given length from letters, numbers, symbols.
-Helps to generate passwords, service codes (for example, for sending via SMS), hashes and much more.
+Allows you to generate random strings of a given length from letters, numbers, and symbols.
+Helps to generate passwords, service codes (for example, for sending via SMS), hashes, and much more.
+
 ---
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/smartlegionlab/smartrandom)](https://github.com/smartlegionlab/smartrandom/)
@@ -14,19 +15,25 @@ Helps to generate passwords, service codes (for example, for sending via SMS), h
 [![GitHub](https://img.shields.io/github/license/smartlegionlab/smartrandom)](https://github.com/smartlegionlab/smartrandom/blob/master/LICENSE)
 [![PyPI - Format](https://img.shields.io/pypi/format/smartrandom)](https://pypi.org/project/smartrandom)
 
+***
+
+Author and developer: ___A.A Suvorov.___
+
+***
 
 ## Help:
 
-```python
-from smartrandom.random_master import RandomMaster
+`pip install smartrandom`
 
-random_string = RandomMaster.string.create(length=10)
-random_number_string = RandomMaster.number.create(length=10)
-password = RandomMaster.password.create(length=10)
-random_hash = RandomMaster.hash.create(text='give me hash')
-random_number_code = RandomMaster.create_code(length=10, number_flag=True)
-random_string_code = RandomMaster.create_code(length=10, string_flag=True)
-random_symbol_code = RandomMaster.create_code(length=10, symbol_flag=True)
+```python
+from smartrandom.random_master import RandomStringMaster
+
+random_string = RandomStringMaster.create_string(length=10)
+string_hash = RandomStringMaster.create_hash('text')
+number_code = RandomStringMaster.create_numeric_code(length=6)
+letter_code = RandomStringMaster.create_letters_code(length=6)
+symbol_code = RandomStringMaster.create_letters_code(length=6)
+code = RandomStringMaster.create_code(length=10, numeric_flag=True, letters_flag=True, symbols_flag=True)
 
 ```
 

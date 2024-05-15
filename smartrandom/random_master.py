@@ -6,12 +6,13 @@
 # --------------------------------------------------------
 # https://github.com/smartlegionlab
 # --------------------------------------------------------
+"""Random Data Generators."""
 import hashlib
 import random
 import string
 
 
-class RandomStringMaster:
+class RandomLettersMaster:
     letters = string.ascii_letters
 
     @classmethod
@@ -19,7 +20,7 @@ class RandomStringMaster:
         return ''.join((random.choice(cls.letters) for _ in range(length)))
 
 
-class RandomNumberMaster:
+class RandomNumericMaster:
     numbers = string.digits
 
     @classmethod
@@ -27,7 +28,7 @@ class RandomNumberMaster:
         return ''.join((random.choice(cls.numbers) for _ in range(length)))
 
 
-class RandomSymbolMaster:
+class RandomSymbolsMaster:
     symbols = '@$!%*#?&-'
 
     @classmethod
@@ -35,38 +36,51 @@ class RandomSymbolMaster:
         return ''.join((random.choice(cls.symbols) for _ in range(length)))
 
 
-class RandomPasswordMaster:
-    letters = string.ascii_letters
-    numbers = string.digits
-    symbols = '@$!%*#?&-'
-
+class HashMaster:
     @classmethod
-    def create(cls, length=10):
-        return ''.join((random.choice(cls.letters + cls.numbers + cls.symbols) for _ in range(length)))
-
-
-class RandomHashMaster:
-    @classmethod
-    def create(cls, text):
+    def create(cls, text: str):
+        text = str(text)
         sha = hashlib.sha3_512(text.encode('utf-8'))
         new_hash = sha.hexdigest()
         return new_hash
 
 
-class RandomMaster:
-    string = RandomStringMaster()
-    number = RandomNumberMaster()
-    symbol = RandomSymbolMaster()
-    password = RandomPasswordMaster()
-    hash = RandomHashMaster()
+class RandomStringMaster:
+    letters_master = RandomLettersMaster()
+    numeric_master = RandomNumericMaster()
+    symbols_master = RandomSymbolsMaster()
+    hash_master = HashMaster()
 
     @classmethod
-    def create_code(cls, length=10, number_flag=False, string_flag=False, symbol_flag=False):
+    def create_string(cls, length=10):
+        random_string = cls.letters_master.letters + cls.numeric_master.numbers + cls.symbols_master.symbols
+        return ''.join((random.choice(random_string) for _ in range(length)))
+
+    @classmethod
+    def create_hash(cls, text):
+        return cls.hash_master.create(text)
+
+    @classmethod
+    def create_numeric_code(cls, length):
+        return cls.numeric_master.create(length)
+
+    @classmethod
+    def create_letters_code(cls, length):
+        return cls.letters_master.create(length)
+
+    @classmethod
+    def create_symbols_code(cls, length):
+        return cls.symbols_master.create(length)
+
+    @classmethod
+    def create_code(cls, length=10, numeric_flag=False, letters_flag=False, symbols_flag=False):
         data = ''
-        if string_flag:
-            data += cls.string.letters
-        if number_flag:
-            data += cls.number.numbers
-        if symbol_flag:
-            data += cls.symbol.symbols
-        return ''.join((random.choice(data) for _ in range(length)))
+        if letters_flag:
+            data += cls.letters_master.letters
+        if numeric_flag:
+            data += cls.numeric_master.numbers
+        if symbols_flag:
+            data += cls.symbols_master.symbols
+        if data:
+            return ''.join((random.choice(data) for _ in range(length)))
+        return None
