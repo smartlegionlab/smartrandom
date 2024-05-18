@@ -1,4 +1,4 @@
-# smartrandom <sup>v0.1.0</sup>
+# smartrandom <sup>v0.1.1</sup>
 ---
 
 ## Random Data Generators:

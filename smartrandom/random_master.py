@@ -8,6 +8,7 @@
 # --------------------------------------------------------
 """Random Data Generators."""
 import hashlib
+import os
 import random
 import string
 
@@ -45,11 +46,18 @@ class HashMaster:
         return new_hash
 
 
+class UrandomGen:
+    @classmethod
+    def generate(cls, size=32):
+        return os.urandom(size)
+
+
 class RandomStringMaster:
     letters_master = RandomLettersMaster()
     numeric_master = RandomNumericMaster()
     symbols_master = RandomSymbolsMaster()
     hash_master = HashMaster()
+    urandom_gen = UrandomGen()
 
     @classmethod
     def create_string(cls, length=10):
@@ -84,3 +92,7 @@ class RandomStringMaster:
         if data:
             return ''.join((random.choice(data) for _ in range(length)))
         return None
+
+    @classmethod
+    def get_random_bytes(cls, size):
+        return cls.urandom_gen.generate(size)
