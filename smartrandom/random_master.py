@@ -30,7 +30,7 @@ class RandomNumericMaster:
 
 
 class RandomSymbolsMaster:
-    symbols = '@$!%*#?&-'
+    symbols = '!@#$%&^_'
 
     @classmethod
     def create(cls, length=10):
