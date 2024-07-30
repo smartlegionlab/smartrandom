@@ -10,6 +10,7 @@
 import hashlib
 import os
 import random
+import re
 import string
 
 
@@ -52,12 +53,24 @@ class UrandomGen:
         return os.urandom(size)
 
 
+class TextRandomizer:
+
+    @classmethod
+    def randomize(cls, message):
+        res = re.sub(r"{(.+?)}", lambda x: random.choice(x.group(1).split("|")), message)
+        return res
+
+    def __call__(self, message):
+        return self.randomize(message)
+
+
 class RandomStringMaster:
     letters_master = RandomLettersMaster()
     numeric_master = RandomNumericMaster()
     symbols_master = RandomSymbolsMaster()
     hash_master = HashMaster()
     urandom_gen = UrandomGen()
+    text_randomizer = TextRandomizer()
 
     @classmethod
     def create_string(cls, length=10):
@@ -96,3 +109,7 @@ class RandomStringMaster:
     @classmethod
     def get_random_bytes(cls, size):
         return cls.urandom_gen.generate(size)
+
+    @classmethod
+    def randomize_text(cls, text):
+        return cls.text_randomizer.randomize(text)
