@@ -4,7 +4,7 @@
 # Copyright © 2018-2024, A.A. Suvorov
 # All rights reserved.
 # --------------------------------------------------------
-# https://github.com/smartlegionlab
+# https://github.com/smartlegionlab/
 # --------------------------------------------------------
 """
 Smart Random - Random Data Generators.
@@ -13,4 +13,15 @@ Allows you to generate random strings of a given length from letters, numbers an
 Helps generate passwords, service codes (for example, for sending via SMS), hashes and much more.
 
 """
-__version__ = '0.1.3'
+from .generators import (
+    RandomLetterGenerator,
+    RandomIntegerGenerator,
+    RandomSymbolGenerator,
+    HashGenerator,
+    UrandomGenerator,
+    TextRandomizer,
+    PasswordGenerator,
+    StringAndNumberCodeGenerator,
+    RandomDataMaster,
+)
+__version__ = '0.2.0'
