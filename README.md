@@ -38,16 +38,19 @@ smartrandom 0.2.1 - new improved version of the library.
 from smartrandom import RandomDataGenerator
 
 
-secret_code = RandomDataGenerator.generate_secret_code(6) # 'zREkjF'
-number_secret_code = RandomDataGenerator.generate_random_numbers(6) # '986741'
-symbols = RandomDataGenerator.generate_random_symbols(10) # '&&!@@&@!_!'
-hash_ = RandomDataGenerator.generate_hash('text') # '1798b0ae66b1ca6f3b88e00f9d17ce1470549e97687a1c97e26110bb8853ad41797e83831efe7eedbd29042a9a8991fd1adb4f7680946d57eed99b8b6e5502c4'
-urandom_string = RandomDataGenerator.generate_random_hex_string(32) # '7b1dd304b42e79d9e26bfb9f839abf8d001fed2039bcc3c5bfd14c0b05cfcab2'
-urandom_bytes = RandomDataGenerator.generate_random_bytes(32) # b'f_@\x1bnP\xb4\xa8\xb7$a\xbf\x13\r#\x96\xe5\x07D\xa1N\xf5\xe9\x9a\x95\x91\xe4\xd0\x8fR"\''
+secret_code = RandomDataGenerator.generate_secret_code(length=6) # 'zREkjF'
+number_secret_code = RandomDataGenerator.generate_random_numbers(length=6) # '986741'
+symbols = RandomDataGenerator.generate_random_symbols(length=10) # '&&!@@&@!_!'
+hash_ = RandomDataGenerator.generate_hash(text='text') # '1798b0ae66b1ca6f3b88e00f9d17ce1470549e97687a1c97e26110bb8853ad41797e83831efe7eedbd29042a9a8991fd1adb4f7680946d57eed99b8b6e5502c4'
+urandom_string = RandomDataGenerator.generate_random_hex_string(size=32) # '7b1dd304b42e79d9e26bfb9f839abf8d001fed2039bcc3c5bfd14c0b05cfcab2'
+urandom_bytes = RandomDataGenerator.generate_random_bytes(size=32) # b'f_@\x1bnP\xb4\xa8\xb7$a\xbf\x13\r#\x96\xe5\x07D\xa1N\xf5\xe9\x9a\x95\x91\xe4\xd0\x8fR"\''
 randomized_text = RandomDataGenerator.randomize_text('{Salute|Hello|Good morning} {comrade|buddy|dear friend}!') # Good morning buddy!
-password = RandomDataGenerator.generate_password(15) # 'b$L^#7rfIUzgY!2'
-
-
+password = RandomDataGenerator.generate_password(length=15) # 'b$L^#7rfIUzgY!2'
+base_password = RandomDataGenerator.generate_base_password(length=15) # '$yE$JL8heeJQv5X'
+smart_password1 = RandomDataGenerator.generate_smart_password(seed='test', length=15) # 'GEyfYrC%VJU!RSY'
+smart_password2 = RandomDataGenerator.generate_smart_password(seed='test2', length=15) # '2PhIQt8pIke9c@m'
+smart_password3 = RandomDataGenerator.generate_smart_password(seed='test', length=15) # 'GEyfYrC%VJU!RSY'
+smart_password4 = RandomDataGenerator.generate_smart_password(seed='test2', length=15) # '2PhIQt8pIke9c@m'
 
 ```
 
