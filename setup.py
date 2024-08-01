@@ -4,10 +4,10 @@
 # Copyright © 2018-2024, A.A. Suvorov
 # All rights reserved.
 # --------------------------------------------------------
-# https://github.com/smartlegionlab
+# https://github.com/smartlegionlab/
 # --------------------------------------------------------
 from setuptools import setup, find_packages
 
 setup(
-    packages=find_packages(),
+    packages=find_packages(exclude=['tests', 'data']),
 )

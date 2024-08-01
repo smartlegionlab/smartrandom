@@ -3,4 +3,5 @@ include README.md
 include requirements.txt
 include setup.cfg
 include setup.py
-global-exclude requirements/*
+global-exclude tests/*
+global-exclude data/*

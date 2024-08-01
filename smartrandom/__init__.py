@@ -22,6 +22,6 @@ from .generators import (
     TextRandomizer,
     PasswordGenerator,
     SecretCodeGenerator,
-    RandomDataMaster,
+    RandomDataGenerator,
 )
 __version__ = '0.2.0'

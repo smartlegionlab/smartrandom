@@ -114,15 +114,21 @@ class TextRandomizer:
     @classmethod
     def randomize(cls, text: str) -> str:
         """
-        Randomizes text by replacing patterns enclosed in curly braces with random elements.
+        Randomizes the input text by replacing patterns enclosed in curly braces with randomly selected elements.
 
-        :param text: Input text with patterns.
-        :return: Randomized text.
+        The method looks for patterns in the input text that are enclosed in curly braces `{}`.
+        Inside the braces, multiple options can be provided, separated by a vertical bar `|`.
+        For each occurrence of such a pattern, one of the options is randomly selected and
+        replaces the entire pattern in the text.
+
+        For example:
+        - Input: "Hello, {Alice|Bob|Charlie}!"
+        - Output: "Hello, Bob!" (or "Hello, Alice!" or "Hello, Charlie!", randomly chosen)
+
+        :param text: The input text containing patterns to be randomized.
+        :return: The randomized text with patterns replaced by randomly selected options.
         """
         return re.sub(r"{(.+?)}", lambda x: secrets.choice(x.group(1).split("|")), text)
-
-    def __call__(self, message: str) -> str:
-        return self.randomize(message)
 
 
 class SecretCodeGenerator:

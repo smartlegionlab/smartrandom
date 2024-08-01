@@ -23,6 +23,8 @@ Author and developer: ___A.A. Suvorov.___
 
 ## What is news:
 
+smartrandom 0.2.0 - new improved version of the library.
+
 > WARNING! This version is not backward compatible with previous versions.
 
 - Completely rewritten and improved code.
@@ -31,9 +33,10 @@ Author and developer: ___A.A. Suvorov.___
 - Generated passwords must now contain at least one digit, one lowercase letter, one uppercase letter and one symbol. Length is at least 4.
 - Random letter generation is now at least 2. At least 1 lowercase letter and one uppercase letter are required.
 - Improved UrandomGenerator default size=128.
-- Added TextRandomizer
-- Added StringAndNumberCodeGenerator
-- Added RandomDataMaster
+- Added TextRandomizer.
+- Added tests.
+- Test coverage 100%.
+- Added documentation.
 
 ***
 
@@ -42,18 +45,17 @@ Author and developer: ___A.A. Suvorov.___
 `pip install smartrandom`
 
 ```python
-from smartrandom import RandomDataMaster
+from smartrandom import RandomDataGenerator
 
-random_data_master = RandomDataMaster()
 
-secret_code = random_data_master.letters.generate(6) # 'zREkjF'
-number_secret_code = random_data_master.numbers.generate(6) # '986741'
-symbols = random_data_master.symbols.generate(10) # '&&!@@&@!_!'
-hash_ = random_data_master.hash.generate('text') # '1798b0ae66b1ca6f3b88e00f9d17ce1470549e97687a1c97e26110bb8853ad41797e83831efe7eedbd29042a9a8991fd1adb4f7680946d57eed99b8b6e5502c4'
-urandom = random_data_master.urandom.generate(32) # '7b1dd304b42e79d9e26bfb9f839abf8d001fed2039bcc3c5bfd14c0b05cfcab2'
-text_randomizer = random_data_master.text_randomizer.randomize('{Salute|Hello|Good morning} {comrade|buddy|dear friend}!') # Good morning buddy!
-string_and_numeric_code = random_data_master.string_and_numeric_code.generate(10) # 'Fii3rbf7iS'
-password = random_data_master.password.generate(15) # 'b$L^#7rfIUzgY!2'
+secret_code = RandomDataGenerator.generate_secret_code(6) # 'zREkjF'
+number_secret_code = RandomDataGenerator.generate_random_numbers(6) # '986741'
+symbols = RandomDataGenerator.generate_random_symbols(10) # '&&!@@&@!_!'
+hash_ = RandomDataGenerator.generate_hash('text') # '1798b0ae66b1ca6f3b88e00f9d17ce1470549e97687a1c97e26110bb8853ad41797e83831efe7eedbd29042a9a8991fd1adb4f7680946d57eed99b8b6e5502c4'
+urandom_string = RandomDataGenerator.generate_random_hex_string(32) # '7b1dd304b42e79d9e26bfb9f839abf8d001fed2039bcc3c5bfd14c0b05cfcab2'
+urandom_bytes = RandomDataGenerator.generate_random_bytes(32) # b'f_@\x1bnP\xb4\xa8\xb7$a\xbf\x13\r#\x96\xe5\x07D\xa1N\xf5\xe9\x9a\x95\x91\xe4\xd0\x8fR"\''
+randomized_text = RandomDataGenerator.randomize_text('{Salute|Hello|Good morning} {comrade|buddy|dear friend}!') # Good morning buddy!
+password = RandomDataGenerator.generate_password(15) # 'b$L^#7rfIUzgY!2'
 
 
 
@@ -100,12 +102,34 @@ Example of text randomization:
 ```python
 from smartrandom import TextRandomizer
 
-text_randomizer = TextRandomizer()
-
 text = '{Salute|Hello|Good morning} {comrade|buddy|dear friend}!'
-randomized_text = text_randomizer.randomize(text)
+randomized_text = TextRandomizer.randomize(text)
 print(randomized_text)  # Good morning buddy!
 ```
+
+---
+
+### Test coverage:
+
+#### Run tests:
+- `pip install pytest`
+- `pytest -v`
+  
+
+#### __Test coverage 100%__
+
+- `pip install pytest-coverage`
+- `pytest --cov`
+
+![commandpack image](https://github.com/smartlegionlab/smartrandom/raw/master/data/images/coverage_report.png)
+
+
+#### Report html:
+
+- `pytest --cov --cov-report=html`
+
+***
+
 
 ***
 
