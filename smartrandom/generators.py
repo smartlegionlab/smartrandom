@@ -19,7 +19,14 @@ class RandomLetterGenerator:
     lower_letters = string.ascii_lowercase
 
     @classmethod
-    def generate(cls, length):
+    def generate(cls, length: int) -> str:
+        """
+        Generates a random string of letters with at least one uppercase and one lowercase letter.
+
+        :param length: Length of the generated string.
+        :raises ValueError: If length is less than 2.
+        :return: Random string of letters.
+        """
         if length < 2:
             raise ValueError("The length must be at least 2 to include at "
                              "least one uppercase and one lowercase letter.")
@@ -36,7 +43,14 @@ class RandomIntegerGenerator:
     digits = string.digits
 
     @classmethod
-    def generate(cls, length=10):
+    def generate(cls, length: int = 10) -> str:
+        """
+        Generates a string of random digits of the specified length.
+
+        :param length: Length of the generated string.
+        :raises ValueError: If length is less than 1.
+        :return: Random string of digits.
+        """
         if length < 1:
             raise ValueError("The length must be at least 1.")
         return ''.join(secrets.choice(cls.digits) for _ in range(length))
@@ -46,51 +60,85 @@ class RandomSymbolGenerator:
     symbols = '!@#$%&^_'
 
     @classmethod
-    def generate(cls, length=10):
+    def generate(cls, length: int = 10) -> str:
+        """
+        Generates a string of random symbols of the specified length.
+
+        :param length: Length of the generated string.
+        :raises ValueError: If length is less than 1.
+        :return: Random string of symbols.
+        """
         if length < 1:
             raise ValueError("The length must be at least 1.")
-        return ''.join((secrets.choice(cls.symbols) for _ in range(length)))
+        return ''.join(secrets.choice(cls.symbols) for _ in range(length))
 
 
 class HashGenerator:
     @classmethod
-    def generate(cls, text: str):
+    def generate(cls, text: str) -> str:
+        """
+        Generates an SHA-3-512 hash for the given text.
+
+        :param text: Input text to hash.
+        :return: SHA-3-512 hash of the input text.
+        """
         text = str(text)
         sha = hashlib.sha3_512(text.encode('utf-8'))
-        new_hash = sha.hexdigest()
-        return new_hash
+        return sha.hexdigest()
 
 
 class UrandomGenerator:
     @classmethod
-    def generate(cls, size=128):
-        random_bytes = os.urandom(size)
-        return random_bytes
+    def generate(cls, size: int = 128) -> bytes:
+        """
+        Generates random bytes of the specified size.
+
+        :param size: Number of random bytes to generate.
+        :return: Random bytes.
+        """
+        return os.urandom(size)
 
     @classmethod
-    def generate_string(cls, size=128):
+    def generate_string(cls, size: int = 128) -> str:
+        """
+        Generates a random string in hexadecimal format of the specified size.
+
+        :param size: Number of random bytes to generate.
+        :return: Random string in hexadecimal format.
+        """
         random_bytes = os.urandom(size)
         return random_bytes.hex()
 
 
 class TextRandomizer:
-
     @classmethod
-    def randomize(cls, text):
-        res = re.sub(r"{(.+?)}", lambda x: secrets.choice(x.group(1).split("|")), text)
-        return res
+    def randomize(cls, text: str) -> str:
+        """
+        Randomizes text by replacing patterns enclosed in curly braces with random elements.
 
-    def __call__(self, message):
+        :param text: Input text with patterns.
+        :return: Randomized text.
+        """
+        return re.sub(r"{(.+?)}", lambda x: secrets.choice(x.group(1).split("|")), text)
+
+    def __call__(self, message: str) -> str:
         return self.randomize(message)
 
 
-class StringAndNumberCodeGenerator:
+class SecretCodeGenerator:
     upper_letters = string.ascii_uppercase
     lower_letters = string.ascii_lowercase
     digits = string.digits
 
     @classmethod
-    def generate(cls, length=10):
+    def generate(cls, length: int = 10) -> str:
+        """
+        Generates a random string containing uppercase letters, lowercase letters, and digits.
+
+        :param length: Length of the generated string.
+        :raises ValueError: If length is less than 3.
+        :return: Random string of letters and digits.
+        """
         if length < 3:
             raise ValueError("The length must be at least 3.")
         result = [
@@ -112,7 +160,15 @@ class PasswordGenerator:
     symbols = '!@#$%&^_'
 
     @classmethod
-    def generate(cls, length=10):
+    def generate(cls, length: int = 10) -> str:
+        """
+        Generates a random password of the specified length, including uppercase letters,
+        lowercase letters, digits, and symbols.
+
+        :param length: Length of the generated password.
+        :raises ValueError: If length is less than 4.
+        :return: Random password.
+        """
         if length < 4:
             raise ValueError("The length cannot be less than 4.")
 
@@ -129,12 +185,93 @@ class PasswordGenerator:
         return ''.join(result)
 
 
-class RandomDataMaster:
-    letters = RandomLetterGenerator()
-    numbers = RandomIntegerGenerator()
-    symbols = RandomSymbolGenerator()
-    hash = HashGenerator()
-    urandom = UrandomGenerator()
-    text_randomizer = TextRandomizer()
-    password = PasswordGenerator()
-    string_and_numeric_code = StringAndNumberCodeGenerator()
+class RandomDataGenerator:
+    @staticmethod
+    def generate_random_letters(length: int) -> str:
+        """
+        Generates a random string of letters.
+
+        :param length: Length of the generated string.
+        :return: Random string of letters.
+        """
+        return RandomLetterGenerator.generate(length)
+
+    @staticmethod
+    def generate_random_numbers(length: int) -> str:
+        """
+        Generates a random string of digits.
+
+        :param length: Length of the generated string.
+        :return: Random string of digits.
+        """
+        return RandomIntegerGenerator.generate(length)
+
+    @staticmethod
+    def generate_random_symbols(length: int) -> str:
+        """
+        Generates a random string of symbols.
+
+        :param length: Length of the generated string.
+        :return: Random string of symbols.
+        """
+        return RandomSymbolGenerator.generate(length)
+
+    @staticmethod
+    def generate_hash(text: str) -> str:
+        """
+        Generates a hash for the given text.
+
+        :param text: Input text to hash.
+        :return: Hash of the input text.
+        """
+        return HashGenerator.generate(text)
+
+    @staticmethod
+    def generate_random_bytes(size: int = 128) -> bytes:
+        """
+        Generates random bytes.
+
+        :param size: Number of random bytes to generate.
+        :return: Random bytes.
+        """
+        return UrandomGenerator.generate(size)
+
+    @staticmethod
+    def generate_random_hex_string(size: int = 128) -> str:
+        """
+        Generates a random string in hexadecimal format.
+
+        :param size: Number of random bytes to generate.
+        :return: Random string in hexadecimal format.
+        """
+        return UrandomGenerator.generate_string(size)
+
+    @staticmethod
+    def randomize_text(text: str) -> str:
+        """
+        Randomizes text by replacing patterns enclosed in curly braces.
+
+        :param text: Input text with patterns.
+        :return: Randomized text.
+        """
+        return TextRandomizer.randomize(text)
+
+    @staticmethod
+    def generate_password(length: int = 10) -> str:
+        """
+        Generates a random password.
+
+        :param length: Length of the generated password.
+        :return: Random password.
+        """
+        return PasswordGenerator.generate(length)
+
+    @staticmethod
+    def generate_secret_code(length: int = 6) -> str:
+        """
+        Generates a random string containing letters and digits.
+
+        :param length: Length of the generated string.
+        :return: Random string of letters and digits.
+        """
+        return SecretCodeGenerator.generate(length)
