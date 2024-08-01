@@ -9,6 +9,7 @@
 """Random Data Generators."""
 import hashlib
 import os
+import random
 import re
 import secrets
 import string
@@ -159,6 +160,25 @@ class SecretCodeGenerator:
         return ''.join(result)
 
 
+class BasePasswordGenerator:
+    letters = string.ascii_letters
+    digits = string.digits
+    symbols = '!@#$%&^_'
+
+    @classmethod
+    def generate(cls, length=10):
+        """
+        Generates a random password of the specified length.
+
+        :param length: Length of the password (default is 10).
+        :return: A randomly generated password as a string.
+        """
+        if length < 4:
+            raise ValueError("The length must be at least 3.")
+        symbols_string = cls.letters + cls.digits + cls.symbols
+        return ''.join((random.choice(symbols_string) for _ in range(length)))
+
+
 class PasswordGenerator:
     upper_letters = string.ascii_uppercase
     lower_letters = string.ascii_lowercase
@@ -189,6 +209,50 @@ class PasswordGenerator:
         ]
         secrets.SystemRandom().shuffle(result)
         return ''.join(result)
+
+
+class SmartPasswordGenerator:
+    @classmethod
+    def generate(cls, seed: str = '', length=15, size: int = 32) -> str:
+        """
+        Generates a "smart" password using the specified seed.
+
+        :param seed: Seed for generation (default is an empty string).
+        :param length: Length of the password (default is 15).
+        :param size: Size of the seed for generation (default is 32).
+        :return: A generated "smart" password as a string.
+        """
+        if length < 4:
+            raise ValueError("The length cannot be less than 4.")
+        if not seed:
+            seed = cls.get_seed(size)
+        cls._set_seed(seed)
+        password = BasePasswordGenerator.generate(length)
+        seed = str(cls.get_seed())
+        cls._set_seed(seed)
+        return password
+
+    @classmethod
+    def _set_seed(cls, seed):
+        """
+        Sets the seed for the random number generator.
+
+        :param seed: Seed to set.
+        :return: The set seed as a string.
+        """
+        seed = str(seed)
+        random.seed(seed)
+        return seed
+
+    @classmethod
+    def get_seed(cls, size=32) -> bytes:
+        """
+        Generates a seed of the specified size.
+
+        :param size: Size of the seed (default is 32).
+        :return: Generated seed as bytes.
+        """
+        return UrandomGenerator.generate(size=size)
 
 
 class RandomDataGenerator:
@@ -261,6 +325,27 @@ class RandomDataGenerator:
         :return: Randomized text.
         """
         return TextRandomizer.randomize(text)
+
+    @staticmethod
+    def generate_base_password(length: int = 10) -> str:
+        """
+        Generates a base password using the BasePasswordGenerator class.
+
+        :param length: Length of the password (default is 10).
+        :return: A generated base password as a string.
+        """
+        return BasePasswordGenerator.generate(length)
+
+    @staticmethod
+    def generate_smart_password(seed: str, length: int = 10) -> str:
+        """
+        Generates a "smart" password using the specified seed.
+
+        :param seed: Seed for generation.
+        :param length: Length of the password (default is 10).
+        :return: A generated "smart" password as a string.
+        """
+        return SmartPasswordGenerator.generate(seed, length)
 
     @staticmethod
     def generate_password(length: int = 10) -> str:

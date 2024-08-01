@@ -1,10 +1,9 @@
-# smartrandom <sup>v0.2.0</sup>
+# smartrandom <sup>v0.2.1</sup>
 ---
 
 ## Random Data Generators:
 
-Allows you to generate random strings of a given length from letters, numbers and symbols, as well as randomize text.
-Helps generate passwords, service codes (for example, for sending via SMS), hashes and much more.
+Random data generators. Allows you to generate random strings of a given length from letters, numbers and symbols, as well as randomize text. Helps generate passwords, service codes (for example, for sending via SMS), hashes and much more. Generates smart, recoverable passwords.
 
 ---
 
@@ -23,20 +22,11 @@ Author and developer: ___A.A. Suvorov.___
 
 ## What is news:
 
-smartrandom 0.2.0 - new improved version of the library.
+smartrandom 0.2.1 - new improved version of the library.
 
-> WARNING! This version is not backward compatible with previous versions.
-
-- Completely rewritten and improved code.
-- Simplified import
-- Uses more secure and cryptographically strong secrets instead of random
-- Generated passwords must now contain at least one digit, one lowercase letter, one uppercase letter and one symbol. Length is at least 4.
-- Random letter generation is now at least 2. At least 1 lowercase letter and one uppercase letter are required.
-- Improved UrandomGenerator default size=128.
-- Added TextRandomizer.
-- Added tests.
-- Test coverage 100%.
-- Added documentation.
+- Added a regular password generator.
+- Added a smart password generator.
+- Improved tests
 
 ***
 
