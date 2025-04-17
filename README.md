@@ -7,6 +7,7 @@ Random data generators. Allows you to generate random strings of a given length 
 
 ---
 
+[![PyPI Downloads](https://static.pepy.tech/badge/smartrandom)](https://pepy.tech/projects/smartrandom)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/smartlegionlab/smartrandom)](https://github.com/smartlegionlab/smartrandom/)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/smartrandom?label=pypi%20downloads)](https://pypi.org/project/smartrandom/)
 ![GitHub top language](https://img.shields.io/github/languages/top/smartlegionlab/smartrandom)
