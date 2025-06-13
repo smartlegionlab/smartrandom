@@ -1,4 +1,4 @@
-# smartrandom <sup>v0.2.1</sup>
+# smartrandom <sup>v0.3.1</sup>
 ---
 
 ## Random Data Generators:
@@ -23,7 +23,7 @@ Author and developer: ___A.A. Suvorov.___
 
 ## What is news:
 
-smartrandom 0.2.1 - new improved version of the library.
+smartrandom 0.3.1 - new improved version of the library.
 
 - Added a regular password generator.
 - Added a smart password generator.
